@@ -1,0 +1,11 @@
+========================================
+Rsat for SAT-Race 2008
+========================================
+
+This solver was compiled for 32-bit environment
+
+=====
+Usage
+=====
+
+> ./rsat.sh <cnf-file>

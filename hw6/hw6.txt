@@ -1,0 +1,114 @@
+1. 
+(a) {x/A, y/A, z/B}
+
+(b) Cannot Unify. 
+
+(c) {x/B, y/A}
+
+(d) {y/John, x/John}
+
+(e) Cannot unify.
+
+------------------------------------------------------------------
+
+2. 
+(a) Translate these sentences into formulas in first-order logic. 
+(A: all, E: some)
+- Ax: (Food(x) => Likes (John, x))
+- Food(Apple)
+- Food(Chicken)
+- Ex, Ay: Eats(x, y) & ~Killby(x, y) => Food(y)
+- Ax, Ey: Killby(x, y) => ~Alive(x)
+- Eats(Bill, Peanuts) & Alive(Bill)
+- Ax: Eats(Bill, x) => Eats(Sue, x)
+
+(b) Convert the formulas of part (a) into CNF (also called clausal form).
+1. ~Food(x) | Likes(John, x)
+2. Food(Apple)
+3. Food(Chicken)
+4. ~Eats(x,y) | Killby(x, y) | Food(y)
+5. ~Killby(x, y) | ~Alive(x)
+6. Eats(Bill, Peanuts)
+7. Alive(Bill)
+8. ~Eats(Bill, x) | Eats(Sue, x)
+
+
+(c) Prove that John likes peanuts using resolution
+We need to show ~Likes(John, Peanuts) is unsatisfiable. 
+
+9. ~Like(John, Peanuts)
+10. ~Food(Peanuts)  (1, 9)
+11. ~Eats(x, Peanuts) | Killby(x, Peanuts)   (4, 10){y/Peanuts}
+12. ~Killby(Bill, y)  (5,7) {x/Bill}
+13. ~Eats(Bill, y) | Food(y) 	(4,12) {x/Bill}
+14. Food(Peanuts) (6, 13) {y/Peanuts}
+15. Likes(John, Peanuts) (1, 14)
+16. []	(empty clause)	(9,15)    -> Contradiction!
+
+Hence, ~Likes(John, Peanuts) is unsatisfiable, we can conclude that John likes peanuts. 
+
+
+(d) Use resolution to answer the question, “What does Sue eat?”
+i.e., Ex: Food(x) & Eat(Sue, x)
+Convert into CNF clause
+17. ~Food(x) | ~Eat(Sue, x)
+18. Eats(Sue, Peanuts) (6,8) {x/Peanuts}
+
+Therefore, Sue eats peanuts. 
+
+
+(e) New Axioms, replacing Eats(Bill, Peanuts) & Alive(Bill), as follow,
+New statements:
+Ax, Ey: ( ~Eats(x, y)) => Dead(x)
+Ax: Dead(x) => ~Alive(x)
+Alive(Bill)
+
+Translate them into CNF clause form:
+- Eats(x, y) | Dead (x)
+- ~Dead(x) | ~Alive(x)
+- Alive(Bill)
+
+The full new revised knowledge base as follow: (Note that y variables here refer to objected objective. x refers to human being, just to distinguish different occurrence of variables)
+1. ~Food(y) | Likes(John, y)
+2. Food(Apple)
+3. Food(Chicken)
+4. ~Eats(x, y) | Killby(x, y) | Food(y)
+5. ~Killby(x, y) | ~Alive(x)
+6. Eats(x, y) | Dead (x)
+7. ~Dead(x) | ~Alive(x)
+8.  Alive(Bill)
+9. ~Eats(Bill, x) | Eats(Sue, x)
+
+Answer "What does Sue eat?" 
+10. ~Food(y) | ~Eat(Sue, y)
+11. ~Food(y) | ~Eats(Bill, y) 	(9, 10)
+12. ~Food(y) | Dead(Bill) 	(6, 11){x/Bill}
+13. ~Food(y) | ~Alive(Bill)  (7,12){x/Bill}
+14. ~Food(y) 	(8,13) 
+15. ~Eats(x, y) | Killby(x, y)  (4,14)
+16. ~Eats(x, y) | ~Alive(x)  (5,15) 
+17. ~Eats(Bill, y)	(8, 16) {x/Bill}
+18. Dead(Bill) 		(6,17) {x/Bill}
+19. ~Alive(Bill) 	(18, 7) {x/Bill}
+20. [] (empty clause)  	(8, 19)-> contradiction!
+
+Since the clause " ~Food(y) | ~Eat(Sue, y)" is unsatisfiable, the So we cannot conclude anything that what Sue eats. This question is unsolvable. 
+------------------------------------------------------------------
+
+3. 
+(1) The instance with 3 colors is unsatisfiable.
+
+(2) The instance with 4 colors is satisfiable.
+
+(3) 
+Based on the result of RSat, the minimum number of colors required to color Graph1 is 4. 
+A possible solution:
+Node 1: color 1
+Node 2: color 2
+Node 3: color 1
+Node 4: color 4
+Node 5: color 3
+Node 6: color 2
+Node 7: color 3
+
+(4) The minimum number of colors required to properly color Graph 2 is 8.  
