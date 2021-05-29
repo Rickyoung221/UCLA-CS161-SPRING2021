@@ -1,4 +1,4 @@
-# CS161-SPRING21
+# UCLA CS161-SPRING21 AI-Fundamental
 | HW#  | Grade   |
 | ---- | ------- |
 | 1    | 100/100 |
