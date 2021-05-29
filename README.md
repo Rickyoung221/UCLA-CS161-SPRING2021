@@ -7,5 +7,7 @@
 | 4    |   100/100      |
 | 5    |      100/100   |
 | 6    |         |
+| 7   |         |
+| 8    |         |
 
 Professor Adnan Darwiche.
