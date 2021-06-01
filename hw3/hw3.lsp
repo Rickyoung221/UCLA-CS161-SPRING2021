@@ -511,10 +511,9 @@
 )
 
 ;;;;;;;Check corner
-; A helper function to deduct if a box is in the corner. i.e., there is two wall arrounding the box, this box cannot be moved anymore.
-; So if it is in the corner, it is call "cornered", this function returns true. 
+; A helper function to deduct if a box is in deadlock. i.e., this box cannot be moved anymore.
 ; input format (r, c)
-(defun isInCorner (s box_pos)
+(defun isDeadlock (s box_pos)
 	(let ((up (get-square s (- (car box_pos) 1) (cadr box_pos)))
 		(down (get-square s (+ (car box_pos) 1) (cadr box_pos)))
 	     	(right (get-square s (car box_pos)  (+ (cadr box_pos) 1)))
@@ -545,7 +544,7 @@
 	(cond
 	  ((null boxes) '()) ;no boxes postion, means no boxes
 	  ((atom (car boxes)) ; it means it is a single list (r, c)
-		(isInCorner s boxes)) 
+		(isDeadlock s boxes)) 
 	  ;check if the box is cornered. If returns nil, it is not, go to next step. It returns t, the function can stop cause we just need one. 
 	  (t  (or (have_cornered s (car boxes)) (have_cornered s (cdr boxes))))
 ))
