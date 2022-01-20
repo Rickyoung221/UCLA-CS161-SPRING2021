@@ -11,3 +11,4 @@
 | 8    |     100/100    |
 
 Professor Adnan Darwiche.
+Please do not directly copy the code. If it helps, please star it. I will be grateful. 😄
